@@ -1,2 +1,2 @@
 # budgetApp
-Calculate your budget
+Calculate your budget with javascript
