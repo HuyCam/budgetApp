@@ -1,3 +1,2 @@
 // Huy Cam with Udemy class
-// Budget App
-//
+// Budget App Project
