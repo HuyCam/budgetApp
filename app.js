@@ -25,7 +25,6 @@ var budgetController = (function(){
 })();
 
 var UIController = (function(){
-
   var DOMString = {
     description: '.add__description',
     budget: '.add__value',
@@ -47,22 +46,21 @@ var UIController = (function(){
 
 })();
 
-var controller = (function(budgetC, UI){
-  var setUpEventListeners = function(){
-    alert('something');
-    var DOMString = UI.getDOMString();
-    document.querySelector(DOMString.inputBtn).addEventListener('click', ctrlAddItem);
-    document.addEventListener('keydown',function(event){
-      var x = event.which || event.keycode;
-      if (x === 13){
-        ctrlAddItem();
-      }
-    });
+  var controller = (function(budgetC, UI){
+    var setUpEventListeners = function(){
+      var DOMString = UI.getDOMString();
+      document.querySelector(DOMString.inputBtn).addEventListener('click', ctrlAddItem);
+      document.addEventListener('keydown',function(event){
+        var x = event.which || event.keycode;
+        if (x === 13){
+          ctrlAddItem();
+        }
+      });
   };
+
   var ctrlAddItem = function(){
     // Get the field input data
     console.log(UI.getInput());
-    console.log(UI.getDOMString());
     // Add the item to the budget budgetController
 
     // Add the item to the UI
@@ -72,19 +70,10 @@ var controller = (function(budgetC, UI){
     // Display the budget on the UI
 
   };
+
   return {
     init: setUpEventListeners
   }
 })(budgetController, UIController);
 
- // controller.init();
-
-// function something(){
-//   var eventHappen = function(){
-//     document.querySelector('.add__btn').addEventListener('click', function(){
-//       alert('event listener in global function');
-//     });
-//   };
-//   eventHappen();
-// }
-// something();
+ controller.init();
