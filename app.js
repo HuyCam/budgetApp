@@ -1,29 +1,40 @@
 // Huy Cam with Udemy class
 // Budget App Project
 var budgetController = (function(){
-  var x = 2018;
-  function add(a){
-    return 2018 - a
-  }
-  return {
-    age: function(a){
-      return add(a);
-    }
-  }
+
 })();
 
 var UIController = (function(){
 
-console.log(budgetController.age(1996));
+
 
 })();
 
-var controller = (function(budget, UI){
-  var z = budget.age(1996);
+var controller = (function(budgetC, UI){
 
-  return {
-    publicTest: function(){
-      console.log(z);
+  var ctrlAddItem = function(){
+    var descript = "";
+    var budget;
+    var addType;
+    descript = document.querySelector('.add__description').value;
+    budget = document.querySelector('.add__value').value;
+    addType = document.querySelector('.add__type').value;
+    console.log('Work');
+  };
+  document.querySelector('.add__btn').addEventListener('click', function(){
+
+    ctrlAddItem();
+
+  });
+
+// enter key detect
+  document.addEventListener('keydown',function(event){
+    var x = event.which || event.keycode;
+
+    if (x === 13){
+      ctrlAddItem();
     }
-  }
+
+    });
+
 })(budgetController, UIController);
