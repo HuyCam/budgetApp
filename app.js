@@ -46,6 +46,10 @@ var budgetController = (function(){
 
       // Return new item
       return newItem;
+    },
+
+    testing: function() {
+      console.log(data);
     }
   };
 })();
@@ -66,7 +70,7 @@ var UIController = (function(){
     getInput: function(){
       return {
         descript : document.querySelector(DOMString.description).value,
-        budget : document.querySelector(DOMString.budget).value,
+        budget :parseInt(document.querySelector(DOMString.budget).value),
         addType : document.querySelector(DOMString.addType).value
       }
     },
@@ -106,7 +110,9 @@ var UIController = (function(){
 
 })();
 
-  var controller = (function(budgetC, UI){
+
+// Controller
+var controller = (function(budgetC, UI){
     var setUpEventListeners = function(){
       var DOMString = UI.getDOMString();
       document.querySelector(DOMString.inputBtn).addEventListener('click', ctrlAddItem);
@@ -118,20 +124,29 @@ var UIController = (function(){
       });
   };
 
+
+  var updateBudget = function(){
+
+  };
+
+
   var ctrlAddItem = function(){
     var input, newItem;
     // Get the field input data
     input = UI.getInput();
-    // Add the item to the budget budgetController
-    newItem = budgetC.addItems(input.addType, input.descript, input.budget);
-    // Add the item to the UI
-    UI.addListItems(newItem, input.addType);
 
-    // Clear Items after hit add or enter
-    UI.clearItems();
-    // Calculate the budget
+    // Validate inputBtn
+    if (!isNaN(input.budget) && input.descript !== "" && input.budget > 0){
+      // Add the item to the budget budgetController
+      newItem = budgetC.addItems(input.addType, input.descript, input.budget);
+      // Add the item to the UI
+      UI.addListItems(newItem, input.addType);
 
-    // Display the budget on the UI
+      // Clear Items after hit add or enter
+      UI.clearItems();
+      // Calculate and update budget
+      updateBudget();
+    }
 
   };
 
