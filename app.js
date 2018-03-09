@@ -103,7 +103,6 @@ var budgetController = (function() {
       if (data.totals.inc > 0) {
         data.percentage = Math.round((data.totals.exp/data.totals.inc) * 100);
       }
-
     },
     getBudget: function() {
       return {
@@ -226,6 +225,7 @@ var UIController = (function(){
     },
     displayBudget: function(obj){
       var type;
+      // determine if budget is negative or positive to assign sign + and -
       obj.budget < 0 ? type = 'exp' : type = 'inc'
       document.querySelector(DOMString.budgetLabel).textContent = obj.budget ;
       document.querySelector(DOMString.incomeLabel).textContent = formatNumber(obj.income, 'inc');
@@ -275,9 +275,9 @@ var UIController = (function(){
 
 })();
 
-// Controller-------------------------------------------------------------------
+// Controller--------------------------------------------------------------------------
 var controller = (function(budgetC, UI){
-    var setUpEventListeners = function(){
+  var setUpEventListeners = function() {
       var DOMString = UI.getDOMString();
       document.querySelector(DOMString.inputBtn).addEventListener('click', ctrlAddItem);
       document.addEventListener('keydown',function(event){
@@ -330,7 +330,7 @@ var controller = (function(budgetC, UI){
     }
   }
 
-  var ctrlAddItem = function(){
+  var ctrlAddItem = function() {
     var input, newItem;
     // Get the field input data
     input = UI.getInput();
